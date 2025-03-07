@@ -239,7 +239,7 @@ class WebAPILLMClassifier(LLMClassifier):
         # Construct dictionary of token to linear token probability for each forward pass
         token_probs_all_passes = [
             {
-                token_metadata["token"]: np.exp(token_metadata["logprob"])
+                token_metadata.token: np.exp(token_metadata.logprob)
                 for token_metadata in top_token_logprobs["top_logprobs"]
             }
             for top_token_logprobs in token_choices_all_passes

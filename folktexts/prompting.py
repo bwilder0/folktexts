@@ -48,7 +48,8 @@ def encode_row_prompt(
     # Get the question to ask
     question = question or task.question
     return (
-        (ACS_TASK_DESCRIPTION + "\n" if add_task_description else "")
+        (ACS_TASK_DESCRIPTION + "\n" if add_task_description and task.description is None else "")
+        + (task.description + "\n" if add_task_description and task.description is not None else "")
         + (f"\n{custom_prompt_prefix}\n" if custom_prompt_prefix else "")
         + f"""\
 Information:
